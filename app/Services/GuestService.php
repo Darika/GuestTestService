@@ -81,7 +81,7 @@ class GuestService
             'surname' => $fields['surname'],
             'phone' => $fields['phone'],
             'email' => $fields['email'],
-            'country' => $fields,
+            'country' => $country,
         ];
     }
 
