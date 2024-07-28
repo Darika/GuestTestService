@@ -1,0 +1,39 @@
+volumes:
+  app_db:
+#  app_storage:
+
+services:
+  web:
+    image: test
+    restart: unless-stopped
+    container_name: test
+    ports:
+      - "80:8080"
+    environment:
+      - TZ=Europe/Moscow
+      # APP
+      # it's default in Dockerfile
+      - APP_ENV=production
+      # generate own key by `php artisan key:generate --show`
+      - APP_KEY=base64:Y0I1rMdRFF2/KbS1U+EmI8q1sUVsSGA9Pe9zci3Hogg=
+      - LOG_CHANNEL=stderr
+      # DB
+      - DB_CONNECTION=pgsql
+      - DB_HOST=postgres
+      - DB_DATABASE=testdb
+      - DB_USERNAME=testuser
+      - DB_PASSWORD=testpassword
+#    volumes:
+#      use for FS app data only
+#      - app_storage:/app/storage
+  postgres:
+    image: "postgres:16.3"
+    shm_size: 128mb
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Moscow
+      - POSTGRES_USER=testuser
+      - POSTGRES_DB=testdb
+      - POSTGRES_PASSWORD=testpassword
+    volumes:
+      - app_db:/var/lib/postgresql/data
