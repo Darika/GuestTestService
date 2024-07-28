@@ -89,7 +89,7 @@
         }
     }
 
-DELETE: /guests/{id}
+**DELETE: /guests/{id}**
 
 ответ:
 
