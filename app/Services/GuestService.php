@@ -25,6 +25,7 @@ class GuestService
     }
 
     /**
+     * тут конечно лучше использовать прослойку, типа DTO
      * @param GuestsStoreRequest $request
      * @return void
      */

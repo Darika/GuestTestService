@@ -4,12 +4,16 @@ namespace App\Repositories;
 
 use App\Interfaces\GuestRepositoryInterface;
 use App\Models\Guest;
+use Illuminate\Support\Facades\DB;
 
 class GuestRepository implements GuestRepositoryInterface
 {
     public function index(): object
     {
-        return Guest::all();
+        return DB::table('guests')
+            ->select('id', 'name', 'surname', 'phone', 'email', 'country')
+            ->orderBy('id')
+            ->get();
     }
 
     public function getById(int $id): object
